@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Analysis &mdash; CDTools 0.2.0 documentation</title>
@@ -79,6 +79,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.tools.analysis.calc_generalized_rms_error"><code class="docutils literal notranslate"><span class="pre">calc_generalized_rms_error()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.tools.analysis.standardize_reconstruction_set"><code class="docutils literal notranslate"><span class="pre">standardize_reconstruction_set()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.tools.analysis.standardize_reconstruction_pair"><code class="docutils literal notranslate"><span class="pre">standardize_reconstruction_pair()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdtools.tools.analysis.calc_spectral_info"><code class="docutils literal notranslate"><span class="pre">calc_spectral_info()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -630,6 +631,33 @@ reconstructions</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cdtools.tools.analysis.calc_spectral_info">
+<span class="sig-prename descclassname"><span class="pre">cdtools.tools.analysis.</span></span><span class="sig-name descname"><span class="pre">calc_spectral_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdtools.tools.analysis.calc_spectral_info" title="Link to this definition"></a></dt>
+<dd><p>Makes a properly normalized sum diffraction pattern</p>
+<p>This returns a scaled version of sum of all the diffraction patterns
+within the dataset. The scaling is defined so that the total intensity
+in the final image is equal to the intensity arising from a region of
+the scan pattern whose area matches one detector conjugate field of
+view.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="../datasets.html#cdtools.datasets.Ptycho2DDataset" title="cdtools.datasets.Ptycho2DDataset"><em>Ptycho2DDataset</em></a>) – A ptychography dataset to use</p></li>
+<li><p><strong>nbins</strong> (<em>int</em>) – The number of bins to use for the SNR curve</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>spectrum</strong> (<em>t.tensor</em>) – An image of the spectral signal rate</p></li>
+<li><p><strong>freqs</strong> (<em>t.tensor</em>) – The frequencies at which the SSNR is estimated</p></li>
+<li><p><strong>SSNR</strong> (<em>t.tensor</em>) – The estimated SSNR</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>

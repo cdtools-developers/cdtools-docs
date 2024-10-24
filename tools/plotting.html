@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plotting &mdash; CDTools 0.2.0 documentation</title>
@@ -165,12 +165,14 @@ coordinates.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cdtools.tools.plotting.plot_phase">
-<span class="sig-prename descclassname"><span class="pre">cdtools.tools.plotting.</span></span><span class="sig-name descname"><span class="pre">plot_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$\\mu$m'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Phase</span> <span class="pre">(rad)'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdtools.tools.plotting.plot_phase" title="Link to this definition"></a></dt>
-<dd><p>Plots the phase of a complex array with dimensions NxMx2</p>
+<span class="sig-prename descclassname"><span class="pre">cdtools.tools.plotting.</span></span><span class="sig-name descname"><span class="pre">plot_phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$\\mu$m'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cividis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Phase</span> <span class="pre">(rad)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdtools.tools.plotting.plot_phase" title="Link to this definition"></a></dt>
+<dd><p>Plots the phase of a complex array with dimensions NxM</p>
 <p>If a figure is given explicitly, it will clear that existing figure and
 plot over it. Otherwise, it will generate a new figure.</p>
 <p>If a basis is explicitly passed, the image will be plotted in real-space
 coordinates</p>
+<p>If the cmap is entered as ‘phase’, it will plot the cmocean phase colormap,
+and by default set the limits to [-pi,pi].</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -178,8 +180,10 @@ coordinates</p>
 <li><p><strong>fig</strong> (<em>matplotlib.figure.Figure</em>) – Default is a new figure, a matplotlib figure to use to plot</p></li>
 <li><p><strong>basis</strong> (<em>np.array</em>) – Optional, the 3x2 probe basis</p></li>
 <li><p><strong>units</strong> (<em>str</em>) – The length units to mark on the plot, default is um</p></li>
-<li><p><strong>cmap</strong> (<em>str</em>) – Default is ‘viridis’, the colormap to plot with</p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – Default is ‘cividis’, the colormap to plot with.</p></li>
 <li><p><strong>cmap_label</strong> (<em>str</em>) – What to label the colorbar when plotting</p></li>
+<li><p><strong>vmin</strong> (<em>int</em>) – Default is min(angle(im)), the minimum value for the colormap</p></li>
+<li><p><strong>vmax</strong> (<em>int</em>) – Default is max(angle(im)), the maximum value for the colormap</p></li>
 <li><p><strong>**kwargs</strong> – All other args are passed to fig.add_subplot(111, **kwargs)</p></li>
 </ul>
 </dd>

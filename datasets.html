@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Datasets &mdash; CDTools 0.2.0 documentation</title>
@@ -71,6 +71,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.from_cxi"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.from_cxi()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.to_cxi"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.to_cxi()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.inspect"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.inspect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.plot_mean_pattern"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.plot_mean_pattern()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.split"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.split()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.pad"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.pad()</span></code></a></li>
 </ul>
@@ -415,13 +416,27 @@ reconstruction tool, such as SHARP.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cdtools.datasets.Ptycho2DDataset.inspect">
-<span class="sig-name descname"><span class="pre">inspect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logarithmic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'um'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdtools.datasets.Ptycho2DDataset.inspect" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">inspect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logarithmic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'um'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_mean_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdtools.datasets.Ptycho2DDataset.inspect" title="Link to this definition"></a></dt>
 <dd><p>Launches an interactive plot for perusing the data</p>
 <p>This launches an interactive plotting tool in matplotlib that
 shows the spatial map constructed from the integrated intensity
 at each position on the left, next to a panel on the right that
 can display a base-10 log plot of the detector readout at each
 position.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cdtools.datasets.Ptycho2DDataset.plot_mean_pattern">
+<span class="sig-name descname"><span class="pre">plot_mean_pattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdtools.datasets.Ptycho2DDataset.plot_mean_pattern" title="Link to this definition"></a></dt>
+<dd><p>Plots the mean diffraction pattern across the dataset</p>
+<p>The output is normalized so that the summed intensity on the
+detector is equal to the total intensity of light that passed
+through the sample within each detector conjugate field of view.</p>
+<p>The plot is plotted as log base 10 of the output plus log_offset.
+By default, log_offset is set equal to 1, which is a good level for
+shot-noise limited data captured in units of photons. More
+generally, log_offset should be set roughly at the background noise
+level.</p>
 </dd></dl>
 
 <dl class="py method">
