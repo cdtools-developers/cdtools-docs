@@ -74,6 +74,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.plot_mean_pattern"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.plot_mean_pattern()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.split"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.split()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.pad"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.pad()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.downsample"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.downsample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.remove_translations_mask"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.remove_translations_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdtools.datasets.Ptycho2DDataset.crop_translations"><code class="docutils literal notranslate"><span class="pre">Ptycho2DDataset.crop_translations()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -470,6 +473,71 @@ padded along with the diffraction patterns</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cdtools.datasets.Ptycho2DDataset.downsample">
+<span class="sig-name descname"><span class="pre">downsample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdtools.datasets.Ptycho2DDataset.downsample" title="Link to this definition"></a></dt>
+<dd><p>Downsamples all diffraction patterns by the specified factor</p>
+<p>This is an easy way to shrink the amount of data you need to work with
+if the speckle size is much larger than the detector pixel size.</p>
+<p>The downsampling factor must be an integer. The size of the output
+patterns are reduced by the specified factor, with each output pixel
+equal to the sum of a &lt;factor&gt; x &lt;factor&gt; region of pixels in the
+input pattern. This summation is done by pytorch.functional.avg_pool2d.</p>
+<p>Any mask and background data which is stored with the dataset is
+downsampled with the data. The background is downsampled using the same
+method as the data. The mask is expanded so that any output pixel
+containing a masked pixel will be masked.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>factor</strong> (<em>int</em>) – Default 2, the factor to downsample by</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cdtools.datasets.Ptycho2DDataset.remove_translations_mask">
+<span class="sig-name descname"><span class="pre">remove_translations_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask_remove</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdtools.datasets.Ptycho2DDataset.remove_translations_mask" title="Link to this definition"></a></dt>
+<dd><p>Removes one or more translation positions, and their associated
+properties, from the dataset using logical indexing.</p>
+<p>This takes a 1D mask (boolean torch tensor) with the length
+self.translations.shape[0] (i.e., the number of individual
+translated points). Patterns, translations, and intensities
+associated with indices that are “True” will be removed.</p>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>mask_remove<span class="classifier">1D torch.tensor(dtype=torch.bool)</span></dt><dd><p>The boolean mask indicating which elements are to be removed from
+the dataset. True indicates that the corresponding element will be
+removed.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cdtools.datasets.Ptycho2DDataset.crop_translations">
+<span class="sig-name descname"><span class="pre">crop_translations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cdtools.datasets.Ptycho2DDataset.crop_translations" title="Link to this definition"></a></dt>
+<dd><p>Shrinks the range of translation positions that are analyzed</p>
+<p>This deletes all diffraction patterns associated with x- and
+y-translations that lie outside of a specified rectangular
+region of interest. In essence, this operation crops the “relative
+displacement map” (shown in self.inspect()) down to the region of
+interest.</p>
+<section id="id1">
+<h2>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>roi<span class="classifier">tuple(float, float, float, float)</span></dt><dd><p>The translation-x and -y coordinates that define the rectangular
+region of interest as (in units of meters)
+(left, right, bottom, top). The definition of these bounds are
+based on how an image is normally displayed with matplotlib’s
+imshow. The order in which these elements are defined in roi
+do not matter as long as roi[:2] and roi[2:] correspond with
+the x and y coordinates, respectively.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 </dd></dl>

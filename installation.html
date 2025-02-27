@@ -98,13 +98,14 @@
 </section>
 <section id="step-2-install-dependencies">
 <h2>Step 2: Install Dependencies<a class="headerlink" href="#step-2-install-dependencies" title="Link to this heading"></a></h2>
-<p>CDTools requires python 3.7 or greater.</p>
+<p>CDTools is regularly tested with Python versions 3.8 to 3.12, so it is recommended to use one of these versions. In general, CDTools requires Python 3.7 or higher.</p>
 <p>The major dependency for CDTools is pytorch (version 1.9.0 or greater). Because the details of the installation can vary depending on platform, GPU availability, etc, it is recommended that you follow the install instructions on <a class="reference external" href="https://pytorch.org/get-started/locally/">the pytorch site</a> to install pytorch before installing the remaining dependencies.</p>
-<p>If you manage your environment with conda, the remaining dependencies can be installed by running the following command in the top level directory of the package:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>--file<span class="w"> </span>requirements.txt<span class="w"> </span>-c<span class="w"> </span>conda-forge
+<p>pytorch stopped supporting installation using conda for installation, so it is recommended continue the installation using pip.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
-<p>This will install all required dependencies <em>except for pytorch</em>, as well as several optional dependencies which are used for the tests and documentation. The full set of dependencies are noted below.</p>
+<p>This will install all required dependencies and verify that they meet the pytorch version requirements. Additionally, several optional dependencies used for testing and documentation will also be installed. The full set of dependencies and minimum requirements are listed below is listed below.</p>
+<p>CDTools is reguarly tested with the latest versions of the packages shown below.</p>
 <p>Required dependencies:</p>
 <blockquote>
 <div><ul class="simple">
